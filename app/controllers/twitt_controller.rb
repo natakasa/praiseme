@@ -19,7 +19,7 @@ class TwittController < ApplicationController
     #client.update(params[:contents])
     final_line = make_line(params[:contents])
     client.update_with_media(final_line, images)
-    redirect_to root_path, notice: 'ツイート成功'
+    redirect_to root_path, notice : final_line
   end
   
   # セリフを形成する
