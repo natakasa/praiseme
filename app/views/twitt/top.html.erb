@@ -13,32 +13,33 @@
 <div class="one_line">
   <div class="balloon-right">
     <div class="twiform">
-      <form method="post" action="/twitt/create">
-        <input type="text" name="contents" /><br/>
-        <input type="submit" value="ツイートする" />
-      </form>
+      <%= form_tag(url_for(:action => 'ajax_create'), :remote => true) do %>
+        <%= text_field_tag :contents %>
+        <%= submit_tag "言う！" %>
+      <% end %>
     </div>
   </div>
   <div class="face">
     <img src="/assets/face11.png">
   </div>
 </div>
-<div class="one_line">
-  <div><%= @notice %></div>
+<span class="hid">
+  <div class="one_line">
+    <div class="face"><img src="/assets/face01.png"></div>
+    <div class="balloon-left"><span class="final_line">こんにちは。これは例です。</span></div>
+  </div>
+</span>
+
+<div>
+<form method="post" action="/twitt/create">
+<input type="text" name="contents" /><br/>
+<input type="submit" value="ツイートする" />
+</form>
 </div>
 
-
-
-
-
-<h1>Ajaxを使ってみよう</h1>
-<%= form_tag(url_for(:action => 'ajax_update'), :remote => true) do %>
-  <%= text_field_tag :title %>
-  <%= submit_tag "タイトルを変更する" %>
-<% end %>
-
-
-
+<footer>
+<p><small>&copy; 2019 hotaimo</small></p>
+</footer>
 
 </body>
 </html>

@@ -6,8 +6,8 @@ class TwittController < ApplicationController
   def top
   end
 
-  def ajax_update
-    @title = params[:title]
+  def ajax_create
+    @final_line = make_line(params[:contents])
     respond_to do |format|
       format.html
       format.js
