@@ -2,9 +2,18 @@ require 'natto'
 
 class TwittController < ApplicationController
   protect_from_forgery with: :null_session
+  
   def top
   end
 
+  def ajax_update
+    @title = params[:title]
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+  
   def create
     client = Twitter::REST::Client.new do |config|
       config.consumer_key         = ENV['TWITTER_CONSUMER_KEY']

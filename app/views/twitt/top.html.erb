@@ -26,5 +26,19 @@
 <div class="one_line">
   <div><%= @notice %></div>
 </div>
+
+
+
+
+
+<h1>Ajaxを使ってみよう</h1>
+<%= form_tag(url_for(:action => 'ajax_update'), :remote => true) do %>
+  <%= text_field_tag :title %>
+  <%= submit_tag "タイトルを変更する" %>
+<% end %>
+
+
+
+
 </body>
 </html>
