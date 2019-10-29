@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  char_no: 1
+  content: MyString1
+  line: MyString1
+  post_flag: 0
+
+two:
+  char_no: 1
+  content: MyString2
+  line: MyString2
+  post_flag: 0

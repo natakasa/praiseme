@@ -7,7 +7,11 @@ class TwittController < ApplicationController
   end
 
   def ajax_create
-    @final_line = make_line(params[:contents])
+    content = params[:contents]
+    final_line = make_line(content)
+    lineModel = Line.create(char_no: 1, content: content, line:final_line, post_flag:0)
+    @final_line = final_line
+    @line_id = lineModel.id
     respond_to do |format|
       format.html
       format.js
@@ -15,6 +19,17 @@ class TwittController < ApplicationController
   end
   
   def create
+    content = "";
+
+    if !(params[:line_id].blank?)
+      logger.debug("create line_id:"+params[:line_id])
+      line = Line.find_by(id: params[:line_id])
+      content = line.content
+      line.update(post_flag: 1)
+    else
+      content = params[:contents]
+    end
+
     client = Twitter::REST::Client.new do |config|
       config.consumer_key         = ENV['TWITTER_CONSUMER_KEY']
       config.consumer_secret      = ENV['TWITTER_CONSUMER_SECRET']
@@ -26,7 +41,7 @@ class TwittController < ApplicationController
     images << File.new('./app/assets/images/image.jpg')
 
     #client.update(params[:contents])
-    final_line = make_line(params[:contents])
+    final_line = make_line(content)
     client.update_with_media(final_line, images)
     redirect_to root_path, notice: final_line
   end
