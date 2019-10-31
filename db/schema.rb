@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2019_10_29_122401) do
     t.integer "char_no"
     t.string "content"
     t.string "line"
-    t.string "post_flag"
+    t.binary "post_flag"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
