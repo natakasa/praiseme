@@ -1,4 +1,5 @@
 require 'natto'
+require 'RMagick'
 
 class TwittController < ApplicationController
   protect_from_forgery with: :null_session
@@ -37,13 +38,19 @@ class TwittController < ApplicationController
       config.access_token_secret  = ENV['TWITTER_ACCESS_TOKEN_SECRET']
     end
     
-    images = []
-    images << File.new('./app/assets/images/image.jpg')
-
+   # fileObj = []
+   # fileObj << File.new('./app/assets/images/image.jpg') # fileobject
+    images = Magick::ImageList.new("./app/assets/images/image.jpg")
+    logger.debug(images.class)
+    images = images.scale(0.25)
+    images.write('./tmp/'+'aaa.jpg')
+    #fileObj = StringIO.open(images.to_blob)
     #client.update(params[:contents])
+    #logger.debug(fileObj.class)
     final_line = make_line(content)
-    client.update_with_media(final_line, images)
+    client.update_with_media(final_line, File.new('./tmp/'+'aaa.jpg')) 
     redirect_to root_path, notice: final_line
+    images.destroy!
   end
   
   # セリフを形成する
