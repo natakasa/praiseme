@@ -31,13 +31,25 @@ class TwittController < ApplicationController
       content = params[:contents]
     end
 
+    /
     client = Twitter::REST::Client.new do |config|
       config.consumer_key         = ENV['TWITTER_CONSUMER_KEY']
       config.consumer_secret      = ENV['TWITTER_CONSUMER_SECRET']
       config.access_token         = ENV['TWITTER_ACCESS_TOKEN']
       config.access_token_secret  = ENV['TWITTER_ACCESS_TOKEN_SECRET']
     end
-    
+    /
+
+    auth = request.env["omniauth.auth"]
+    logger.debug('debug code')
+    logger.debug(auth)
+    client = Twitter::REST::Client.new do |config|
+      config.consumer_key         = ENV['TWITTER_CONSUMER_KEY']
+      config.consumer_secret      = ENV['TWITTER_CONSUMER_SECRET']  
+      config.access_token         = auth.credentials.token
+      config.access_token_secret  = auth.credentials.secret
+    end
+
    # fileObj = []
    # fileObj << File.new('./app/assets/images/image.jpg') # fileobject
     images = Magick::ImageList.new("./app/assets/images/image.jpg")

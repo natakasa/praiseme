@@ -28,7 +28,8 @@
     <div class="face"><img src="/assets/face01.png"></div>
     <div class="balloon-left"><span class="final_line">test</span></div>
     <div class="balloon-left"><span>せっかくやしみんなにも見てもらお！</span>
-      <form method="post" action="/twitt/create">
+    <!-- <form method="post" action="/twitt/create"> -->
+    <form method="get" action="/auth/twitter">
         <input type="hidden" name="line_id" class="line_id" value="" />
         <input type="text" name="contents" value="test" />
         <input type="submit" value="ツイートする" />
@@ -39,7 +40,8 @@
 </span>
 
 <div>
-<form method="post" action="/twitt/create">
+<!-- <form method="post" action="/twitt/create"> -->
+<form method="post" action="/auth/:provider/callback">
 <input type="text" name="contents" /><br/>
 <input type="submit" value="ツイートする" />
 </form>
