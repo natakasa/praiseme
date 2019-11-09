@@ -16,12 +16,14 @@ body {
 }
 
 .story {
-  text-align:center;
+  width: 70%;
+  margin: 0 auto;
+  max-width: 70%;
 }
 
-.one_line {
+.one_line {  
   display: flex;
-  width:200px;
+  flex-wrap: wrap;
 }
 
 .balloon-left {
@@ -29,7 +31,7 @@ body {
   display: inline-block;
   margin: 1.5em 0 1.5em 15px;
   padding: 7px 10px;
-  min-width: 120px;
+  min-width: 500px;
   max-width: 100%;
   color: #555;
   font-size: 16px;
@@ -57,7 +59,7 @@ body {
   display: inline-block;
   margin: 1.5em 15px 1.5em 0;
   padding: 7px 10px;
-  min-width: 120px;
+  min-width: 500px;
   max-width: 100%;
   color: #555;
   font-size: 16px;

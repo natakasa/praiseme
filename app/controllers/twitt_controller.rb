@@ -31,6 +31,7 @@ class TwittController < ApplicationController
     # Twitterに投稿する場合、post_flagを1に更新
     line = Line.find_by(id: params[:line_id])
     content = line.content
+    final_line = line.line
     line.update(post_flag: 1)
 
     /
@@ -52,16 +53,26 @@ class TwittController < ApplicationController
     end
 
     # 画像を加工
-    images = Magick::ImageList.new("./app/assets/images/image.jpg")
-    logger.debug(images.class)
-    images = images.scale(0.25)
+    image = Magick::ImageList.new("./app/assets/images/image.jpg")
+    logger.debug(image.class)
+    logger.debug(final_line)
+    draw = Magick::Draw.new
+    draw.annotate(image, 0, 0, 50, 100, final_line) do
+      self.font = "./app/assets/fonts/GenEiLateMinN_v2.ttf"
+      self.fill = '#333333'
+      self.align = Magick::LeftAlign
+      self.stroke = 'transparent'
+      self.pointsize = 30
+      self.text_antialias = true
+      self.kerning = 1
+    end
+    # images = images.scale(0.25)
     image_name = SecureRandom.uuid + ".jpg"
-    images.write('./tmp/'+ image_name)
+    image.write('./tmp/'+ image_name)
 
-    final_line = make_line(content)
-    client.update_with_media(final_line, File.new('./tmp/'+ image_name)) 
+    client.update_with_media(content, File.new('./tmp/'+ image_name)) 
     redirect_to root_path, notice: "success!"
-    images.destroy!
+    image.destroy!
   end
   
   # セリフを形成する
