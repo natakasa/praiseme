@@ -7,29 +7,31 @@ class TwittController < ApplicationController
   def top
   end
 
+  # セリフを形成する
   def ajax_create
     content = params[:contents]
     final_line = make_line(content)
-    lineModel = Line.create(char_no: 1, content: content, line:final_line, post_flag:0)
+    # テーブルに格納
+    line_Model = Line.create(char_no: 1, content: content, line:final_line, post_flag:0)
+    # レスポンス
     @final_line = final_line
-    @line_id = lineModel.id
+    @line_id = line_Model.id
     respond_to do |format|
       format.html
       format.js
     end
   end
   
+  # セリフをTwitterに投稿する
   def create
-    content = "";
 
-    if !(params[:line_id].blank?)
-      logger.debug("create line_id:"+params[:line_id])
-      line = Line.find_by(id: params[:line_id])
-      content = line.content
-      line.update(post_flag: 1)
-    else
-      content = params[:contents]
-    end
+    logger.debug("create line_id:"+params[:line_id])
+
+    content = "";
+    # Twitterに投稿する場合、post_flagを1に更新
+    line = Line.find_by(id: params[:line_id])
+    content = line.content
+    line.update(post_flag: 1)
 
     /
     client = Twitter::REST::Client.new do |config|
@@ -40,9 +42,8 @@ class TwittController < ApplicationController
     end
     /
 
+    # Twitterの認証を取得し、セリフを画像とともに投稿
     auth = request.env["omniauth.auth"]
-    logger.debug('debug code')
-    logger.debug(auth)
     client = Twitter::REST::Client.new do |config|
       config.consumer_key         = ENV['TWITTER_CONSUMER_KEY']
       config.consumer_secret      = ENV['TWITTER_CONSUMER_SECRET']  
@@ -50,18 +51,16 @@ class TwittController < ApplicationController
       config.access_token_secret  = auth.credentials.secret
     end
 
-   # fileObj = []
-   # fileObj << File.new('./app/assets/images/image.jpg') # fileobject
+    # 画像を加工
     images = Magick::ImageList.new("./app/assets/images/image.jpg")
     logger.debug(images.class)
     images = images.scale(0.25)
-    images.write('./tmp/'+'aaa.jpg')
-    #fileObj = StringIO.open(images.to_blob)
-    #client.update(params[:contents])
-    #logger.debug(fileObj.class)
+    image_name = SecureRandom.uuid + ".jpg"
+    images.write('./tmp/'+ image_name)
+
     final_line = make_line(content)
-    client.update_with_media(final_line, File.new('./tmp/'+'aaa.jpg')) 
-    redirect_to root_path, notice: final_line
+    client.update_with_media(final_line, File.new('./tmp/'+ image_name)) 
+    redirect_to root_path, notice: "success!"
     images.destroy!
   end
   

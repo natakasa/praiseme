@@ -15,8 +15,13 @@ body {
   display: none;
 }
 
+.story {
+  text-align:center;
+}
+
 .one_line {
   display: flex;
+  width:200px;
 }
 
 .balloon-left {
