@@ -52,17 +52,32 @@ class TwittController < ApplicationController
       config.access_token_secret  = auth.credentials.secret
     end
 
+    # 画像に出力する文字列を加工    
+    logger.debug(final_line)
+    str_num = 15
+    line_len = final_line.length
+    row_num = line_len/str_num
+    output_line = ''
+    for num in 0..row_num do
+      if num != row_num then
+        output_line += final_line[num*str_num, str_num]
+        output_line += '\r\n'
+      else 
+        output_line += final_line[num*str_num, str_num]
+      end
+    end
+
     # 画像を加工
     image = Magick::ImageList.new("./app/assets/images/01/image.png")
     logger.debug(image.class)
-    logger.debug(final_line)
+
     draw = Magick::Draw.new
-    draw.annotate(image, 0, 0, 50, 100, final_line) do
+    draw.annotate(image, 0, 0, 50, 100, output_line) do
       self.font = "./app/assets/fonts/GenEiLateMinN_v2.ttf"
       self.fill = '#333333'
       self.align = Magick::LeftAlign
       self.stroke = 'transparent'
-      self.pointsize = 30
+      self.pointsize = 25
       self.text_antialias = true
       self.kerning = 1
     end
