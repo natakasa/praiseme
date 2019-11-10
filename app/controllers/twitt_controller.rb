@@ -53,7 +53,7 @@ class TwittController < ApplicationController
     end
 
     # 画像を加工
-    image = Magick::ImageList.new("./app/assets/images/image.jpg")
+    image = Magick::ImageList.new("./app/assets/images/01/image.png")
     logger.debug(image.class)
     logger.debug(final_line)
     draw = Magick::Draw.new

@@ -9,35 +9,50 @@
 <div class="story">
 
 <div class="one_line">
-  <div class="face"><img src="/assets/face01.png"></div>
-  <div class="balloon-left">今日がんばったこと、ウチに教えて！</div>
+  <div class="face"><img src="/assets/01/face01.png"></div>
+  <div class="baloon-area">
+    <div class="balloon-left"><div class ="line-text">お疲れさん！<br>今日がんばったこと、ウチに教えて！</div></div>
+  </div>
 </div>
+
 <div class="one_line">
-  <div class="balloon-right">
-    <div class="twiform">
-      <%= form_tag(url_for(:action => 'ajax_create'), :remote => true) do %>
-        <%= text_field_tag :contents %>
-        <%= submit_tag "言う！" %>
-      <% end %>
+  <div class="baloon-area">
+    <div class="balloon-right">
+     <div class="twiform">
+        <%= form_tag(url_for(:action => 'ajax_create'), :remote => true) do %>
+          <%= text_field_tag :contents %><br>
+          <%= submit_tag "言う！" %>
+        <% end %>
+      </div>
     </div>
   </div>
   <div class="face">
-    <img src="/assets/face11.png">
+    <img src="/assets/face.png">
   </div>
 </div>
+
 <span class="hid">
   <div class="one_line">
-    <div class="face"><img src="/assets/face01.png"></div>
-    <div class="balloon-left"><span class="final_line">test</span></div>
-    <div class="balloon-left"><span>せっかくやしみんなにも見てもらお！</span>
-    <form method="get" action="/auth/twitter">
-        <input type="hidden" name="line_id" class="line_id" value="" />
-        <input type="submit" value="ツイートする" />
-      </form>
+    <div class="face"><img src="/assets/01/face02.png"></div>
+    <div class="baloon-area">
+      <div class="balloon-left"><div class="final_line line-text"></div></div>
+      <div class="balloon-left"><div class ="line-text">せっかくやしみんなにも見てもらお！</div>
+      <form method="get" action="/auth/twitter">
+          <input type="hidden" name="line_id" class="line_id" value="" />
+          <input type="submit" value="ツイートする" />
+        </form>
+      </div>
     </div>
   </div>
 </span>
 </div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 <footer>
 <p><small>&copy; 2019 hotaimo</small></p>

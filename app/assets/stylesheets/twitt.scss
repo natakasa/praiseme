@@ -4,15 +4,11 @@
 
 body {
   background-color: #1E90FF;
-  background-image: url("/assets/tati.png");
+  background-image: url("/assets/01/back.png");
+  background-size:contain;
   background-position: right bottom;
   background-repeat: no-repeat;
   background-attachment: fixed;
-}
-
-
-.hid {
-  display: none;
 }
 
 .story {
@@ -21,20 +17,27 @@ body {
   max-width: 70%;
 }
 
-.one_line {  
-  display: flex;
-  flex-wrap: wrap;
+.face img{
+  width: 300px;
+  height: auto;
 }
 
-.balloon-left {
+.one_line {  
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.baloon-area {  
+  width: 100%;
+}
+
+.balloon-left, .balloon-right {
   position: relative;
-  display: inline-block;
-  margin: 1.5em 0 1.5em 15px;
-  padding: 7px 10px;
-  min-width: 500px;
-  max-width: 100%;
+  margin: 1.5em 1.5em 1.5em 1.5em;
+  padding: 40px 20px;
   color: #555;
-  font-size: 16px;
+  font-size: 18px;
   background: #ffffff;
   border-radius: 10px;
 }
@@ -49,24 +52,6 @@ body {
   border-right: 15px solid #ffffff;
 }
 
-.balloon-left p {
-  margin: 0;
-  padding: 0;
-}
-
-.balloon-right {
-  position: relative;
-  display: inline-block;
-  margin: 1.5em 15px 1.5em 0;
-  padding: 7px 10px;
-  min-width: 500px;
-  max-width: 100%;
-  color: #555;
-  font-size: 16px;
-  background: #ffffff;
-  border-radius: 10px;
-}
-
 .balloon-right:before {
   content: "";
   position: absolute;
@@ -77,9 +62,8 @@ body {
   border-left: 15px solid #ffffff;
 }
 
-.balloon-right p {
-  margin: 0;
-  padding: 0;
+.hid {
+  display: none;
 }
 
 footer{
