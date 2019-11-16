@@ -8,15 +8,17 @@
 <body>
 
 <div class="header">
-  <%= link_to 'Praise me!', root_path, class:"title" %>
-  <span class="char-select"><img src="/assets/char_01.png"></span>
-  <span class="char-select"><img src="/assets/char_00.png"></span>
-  <span class="char-select"><img src="/assets/char_00.png"></span>
-  <span class="infomation"><%= fa_icon 'question-circle 2x' %></span>
-  <aside class="infomation_contents">
+  <div class="header_contents">
+    <%= link_to 'Praise me!', root_path,  data: {"turbolinks" => false}, class:"title" %>
+
+    <span class="infomation">
+      <span v-on:click="infoSwich"><%= fa_icon 'question-circle 2x' %></span>
+      <div class="infomation_area" v-show="show">
+        <aside class="infomation_contents">
+        <span v-on:click="infoClose"><%= fa_icon 'close 2x' %></span><br>
 <h1>Praise me!</h1>
-<h2>生きているだけで褒められたい……<br>
-大人だって褒められたい……</h2>
+<h3>大人だって褒められたい……<br>
+生きているだけで褒められたい……</h3>
 <br>
 好みの美少女に、今日頑張ったことを報告してみて下さい。<br>
 きっとアナタを褒めてくれるでしょう。<br>
@@ -25,7 +27,20 @@
 みんなにも見てもらいましょう。<br>
 <br>
 ※美少女は随時追加予定！<br>
-  </aside>
+        </aside>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="char_select">
+  <div class="char_area" v-show="isOpen">
+  <span class="char-select"><img src="/assets/char_01.png"></span>
+  <span class="char-select"><img src="/assets/char_00.png"></span>
+  <span class="char-select"><img src="/assets/char_00.png"></span>
+  </div>
+  <br>
+  <div class="" v-on:click="charSwich"><%= fa_icon 'angle-down 2x' %></div>
 </div>
 
 <br>
