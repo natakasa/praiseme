@@ -5,7 +5,7 @@
 body {
   background-color: #1E90FF;
   background-image: url("/assets/01/back.png");
-  background-size: auto 90%;
+  background-size: auto 85%;
   background-position: right bottom;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -15,40 +15,46 @@ a {
   text-decoration: none;
 }
 
-.header {
+.header_area {
   position: fixed;
-  display: flex;
   top: 0;
   left: 0;
   width: 100%;
   height: 50px;
   background-color: #ffffff;  
   z-index: 100;
+  text-align: center;
+  align-items: center;
+}
+
+.header_area a:visited {
+  color: #000;
+}
+
+.header_area a:hover {
+  color: #555;
 }
 
 .header_contents {
   width: 60%;
-  text-align: center;
-}
-
-.header a:visited {
-  color: #000000;
-}
-
-.header a:hover {
-  color: #555;
+  display: inline-block;
+  text-align: left;
 }
 
 .title{
   font-family: Neucha,cursive;
-  font-size: 25px;
+  font-size: 30px;
+}
+
+.infomation {
+  text-align: right;
 }
 
 .infomation_area {
   width: 100vw;
   position: absolute;
   top: 50px;
-  padding: 16px;
+  left: 0;
   background: #fff;
   color: #555;
   height: 100vh;
@@ -57,12 +63,12 @@ a {
 
 .infomation_contents {
   width: 60%;
+  display: inline-block;
   text-align: left;
 }
 
-.char_select {
+.char_select_area {
   position: fixed;
-  display: flex;
   top: 50px;
   left: 0;
   width: 100%;
@@ -71,9 +77,17 @@ a {
   z-index: 100;
 }
 
+.char_area {
+  text-align: center;
+}
+
 .char-select img{
   width: 30px;
   height: auto;
+}
+
+.char_select_area_button{
+  text-align: center;
 }
 
 .story {
@@ -84,6 +98,11 @@ a {
 
 .face img{
   width: 300px;
+  height: auto;
+}
+
+.face_mob img{
+  width: 150px;
   height: auto;
 }
 

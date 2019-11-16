@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     var app = new Vue({
-        el: ".char_select",
+        el: ".char_select_area",
         data: {
             isOpen: false
         },

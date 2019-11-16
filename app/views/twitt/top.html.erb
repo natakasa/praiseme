@@ -7,15 +7,18 @@
 </head>
 <body>
 
-<div class="header">
+<div class="header_area">
   <div class="header_contents">
     <%= link_to 'Praise me!', root_path,  data: {"turbolinks" => false}, class:"title" %>
-
     <span class="infomation">
-      <span v-on:click="infoSwich"><%= fa_icon 'question-circle 2x' %></span>
+      <span v-on:click="infoSwich" class="infomation_button">
+        <%= fa_icon 'question-circle 2x' %>
+      </span>
       <div class="infomation_area" v-show="show">
         <aside class="infomation_contents">
-        <span v-on:click="infoClose"><%= fa_icon 'close 2x' %></span><br>
+        <span v-on:click="infoClose">
+          <%= fa_icon 'close 2x' %></span>
+        <br>
 <h1>Praise me!</h1>
 <h3>大人だって褒められたい……<br>
 生きているだけで褒められたい……</h3>
@@ -33,16 +36,18 @@
   </div>
 </div>
 
-<div class="char_select">
+<div class="char_select_area">
   <div class="char_area" v-show="isOpen">
-  <span class="char-select"><img src="/assets/char_01.png"></span>
-  <span class="char-select"><img src="/assets/char_00.png"></span>
-  <span class="char-select"><img src="/assets/char_00.png"></span>
+    <span class="char-select"><img src="/assets/char_01.png"></span>
+    <span class="char-select"><img src="/assets/char_00.png"></span>
+    <span class="char-select"><img src="/assets/char_00.png"></span>
   </div>
-  <br>
-  <div class="" v-on:click="charSwich"><%= fa_icon 'angle-down 2x' %></div>
+  <div class="char_select_area_button" v-on:click="charSwich">
+    <%= fa_icon 'angle-down 2x' %>
+  </div>
 </div>
 
+<br>
 <br>
 <br>
 
@@ -61,12 +66,12 @@
      <div class="twiform">
         <%= form_tag(url_for(:action => 'ajax_create'), :remote => true) do %>
           <%= text_field_tag :contents %><br>
-          <%= submit_tag "言う！" %>
+          <%= submit_tag "言う！",  class:"btn btn-primary" %>
         <% end %>
       </div>
     </div>
   </div>
-  <div class="face">
+  <div class="face_mob">
     <img src="/assets/face.png">
   </div>
 </div>
