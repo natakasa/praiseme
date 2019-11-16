@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body {
-  background-color: #1E90FF;
+  background-color: #007BFF !important;
   background-image: url("/assets/01/back.png");
   background-size: auto 85%;
   background-position: right bottom;
@@ -59,6 +59,10 @@ a {
   color: #555;
   height: 100vh;
   text-align: center;
+}
+
+.info_close_button{
+  text-align: right;
 }
 
 .infomation_contents {
