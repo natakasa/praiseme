@@ -11,6 +11,10 @@ body {
   background-attachment: fixed;
 }
 
+a {
+  text-decoration: none;
+}
+
 .header {
   position: fixed;
   display: flex;
@@ -21,11 +25,41 @@ body {
   background-color: #ffffff;
   align-items: center;
 }
+.header a:visited {
+  color: #000000;
+}
+
+.header a:hover {
+  color: #555;
+}
+
+.header_link{
+  font-family: Neucha,cursive;
+  font-size: 25px;
+}
 
 .title{
   font-family: Neucha,cursive;
   font-size: 25px;
 }
+
+.infomation_contents {
+  display: none;
+  width: 100%;
+  position: absolute;
+  top: 50px;
+  padding: 16px;
+  background: #fff;
+  color: #555;
+  height: 100vh;
+  z-index: 100;
+}
+
+/*
+.infomation:hover + .infomation_contents {
+  display: block;
+}
+*/
 
 .char-select img{
   width: 30px;
