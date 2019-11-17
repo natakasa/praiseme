@@ -14,10 +14,11 @@
       <span v-on:click="infoSwich" class="infomation_button">
         <%= fa_icon 'question-circle 2x' %>
       </span>
-      <div class="infomation_area" v-show="show">
-        <aside class="infomation_contents">
-        <br>
-        <br>
+      <transition name="trans_slide">
+        <div class="infomation_area" v-show="isOpen">
+<aside class="infomation_contents">
+<br>
+<br>
 <span v-on:click="infoClose" class="info_close_button">
   <%= fa_icon 'close 2x' %>
 </span>
@@ -33,18 +34,22 @@
 みんなにも見てもらいましょう。<br>
 <br>
 ※美少女は随時追加予定！<br>
-        </aside>
-      </div>
+※動作確認：Chrome最新版<br>
+</aside>
+        </div>
+      </transition>
     </span>
   </div>
 </div>
 
 <div class="char_select_area">
-  <div class="char_area" v-show="isOpen">
-    <span class="char-select"><img src="/assets/char_01.png"></span>
-    <span class="char-select"><img src="/assets/char_00.png"></span>
-    <span class="char-select"><img src="/assets/char_00.png"></span>
-  </div>
+  <transition name="trans_slide">
+    <div class="char_area" v-show="isOpen">
+      <span class="char-select"><img src="/assets/char_01.png"></span>
+      <span class="char-select"><img src="/assets/char_00.png"></span>
+      <span class="char-select"><img src="/assets/char_00.png"></span>
+    </div>
+  </transition>
   <div class="char_select_area_button" v-on:click="charSwich">
     <%= fa_icon 'angle-down 2x' %>
   </div>
@@ -70,7 +75,7 @@
      <div class="twiform">
         <%= form_tag(url_for(:action => 'ajax_create'), :remote => true) do %>
           <%= text_field_tag :contents, "", class:"form-control" %><br>
-          <%= submit_tag "言う！",  class:"btn btn-primary" %>
+          <%= submit_tag "報告してみる",  class:"btn btn-primary" %>
         <% end %>
       </div>
     </div>
@@ -88,7 +93,7 @@
       <div class="balloon-left"><div class ="line-text">せっかくやしみんなにも見てもらお！</div>
       <form method="get" action="/auth/twitter">
           <input type="hidden" name="line_id" class="line_id" value="" />
-          <input type="submit" value="ツイートする" class="btn btn-primary"/>
+          <input type="submit" value="Tweet!" class="btn btn-primary"/>
         </form>
       </div>
     </div>

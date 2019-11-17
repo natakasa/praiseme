@@ -5,14 +5,14 @@ document.addEventListener('DOMContentLoaded', function() {
     var app = new Vue({
         el: ".infomation",
         data: {
-            show: false
+            isOpen: false
         },
         methods: {
             infoSwich: function () {
-                this.show = !this.show
+                this.isOpen = !this.isOpen
             },
             infoClose: function () {
-                this.show = false
+                this.isOpen = false
             }
         }
     });

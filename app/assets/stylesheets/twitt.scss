@@ -59,7 +59,17 @@ a {
   color: #555;
   height: 100vh;
   text-align: center;
+  overflow: hidden;
 }
+
+// vueのtransition start
+.trans_slide-enter-active, .trans_slide-leave-active {
+  transition: all .5s;
+}
+.trans_slide-enter, .trans_slide-leave-to {
+  height: 0;
+}
+// vueのtransition end
 
 .info_close_button{
   text-align: right;
@@ -76,13 +86,15 @@ a {
   top: 50px;
   left: 0;
   width: 100%;
-  height: auto;
   background-color: #ffffff;  
   z-index: 100;
 }
 
 .char_area {
+  background: #fff;
   text-align: center;
+  height: auto;
+  overflow: hidden;
 }
 
 .char-select img{
