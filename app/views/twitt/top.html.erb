@@ -74,7 +74,7 @@
     <div class="balloon-right">
      <div class="twiform">
         <%= form_tag(url_for(:action => 'ajax_create'), :remote => true) do %>
-          <%= text_field_tag :contents, "", class:"form-control" %><br>
+          <%= text_field_tag :contents, "", maxlength:140, class:"form-control" %><br>
           <%= submit_tag "報告してみる",  class:"btn btn-primary" %>
         <% end %>
       </div>

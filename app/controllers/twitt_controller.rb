@@ -9,8 +9,11 @@ class TwittController < ApplicationController
 
   # セリフを形成する
   def ajax_create
+
+    make_line = MakeLine.new
     content = params[:contents]
-    final_line = make_line(content)
+    final_line = make_line.get_line(1, content)
+    #final_line = make_line(content)
     # テーブルに格納
     line_Model = Line.create(char_no: 1, content: content, line:final_line, post_flag:0)
     # レスポンス
@@ -33,15 +36,6 @@ class TwittController < ApplicationController
     content = line.content
     final_line = line.line
     line.update(post_flag: 1)
-
-    /
-    client = Twitter::REST::Client.new do |config|
-      config.consumer_key         = ENV['TWITTER_CONSUMER_KEY']
-      config.consumer_secret      = ENV['TWITTER_CONSUMER_SECRET']
-      config.access_token         = ENV['TWITTER_ACCESS_TOKEN']
-      config.access_token_secret  = ENV['TWITTER_ACCESS_TOKEN_SECRET']
-    end
-    /
 
     # Twitterの認証を取得し、セリフを画像とともに投稿
     auth = request.env["omniauth.auth"]
@@ -90,7 +84,10 @@ class TwittController < ApplicationController
     image.destroy!
   end
   
-  # セリフを形成する
+
+  __END__
+   # ライブラリ化のため廃止
+   # セリフを形成する
   def make_line(base_line)
   
     base_line0 = 'すごいやん！'
