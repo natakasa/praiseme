@@ -12,10 +12,12 @@ class TwittController < ApplicationController
 
     make_line = MakeLine.new
     content = params[:contents]
-    final_line = make_line.get_line(1, content)
+    char_no = params[:char_no].to_i
+    logger.debug("ajax_create char_no" + char_no.to_s)
+    final_line = make_line.get_line(char_no, content)
     #final_line = make_line(content)
     # テーブルに格納
-    line_Model = Line.create(char_no: 1, content: content, line:final_line, post_flag:0)
+    line_Model = Line.create(char_no: char_no, content: content, line:final_line, post_flag:0)
     # レスポンス
     @final_line = final_line
     @line_id = line_Model.id
@@ -33,6 +35,7 @@ class TwittController < ApplicationController
     content = "";
     # Twitterに投稿する場合、post_flagを1に更新
     line = Line.find_by(id: params[:line_id])
+    char_no = line.char_no
     content = line.content
     final_line = line.line
     line.update(post_flag: 1)
@@ -62,7 +65,12 @@ class TwittController < ApplicationController
     end
 
     # 画像を加工
-    image = Magick::ImageList.new("./app/assets/images/01/image.png")
+    image = null
+    if char_no == 1 then
+      image = Magick::ImageList.new("./app/assets/images/01/image.png")
+    elsif char_no == 2 then
+      image = Magick::ImageList.new("./app/assets/images/02/image.png")
+    end
     logger.debug(image.class)
 
     draw = Magick::Draw.new

@@ -43,11 +43,11 @@
 </div>
 
 <div class="char_select_area">
-  <transition name="trans_slide">
+  <transition name="trans_slide_char">
     <div class="char_area" v-show="isOpen">
-      <span class="char-select"><img src="/assets/char_01.png"></span>
-      <span class="char-select"><img src="/assets/char_00.png"></span>
-      <span class="char-select"><img src="/assets/char_00.png"></span>
+      <span class="char-select" id="char-select-01"><img src="/assets/char_01.png"></span>
+      <span class="char-select" id="char-select-02"><img src="/assets/char_02.png"></span>
+      <span class="char-select" id="char-select-00"><img src="/assets/char_00.png"></span>
     </div>
   </transition>
   <div class="char_select_area_button" v-on:click="charSwich">
@@ -66,9 +66,9 @@
 <div class="story">
 
 <div class="one_line">
-  <div class="face"><img src="/assets/01/face01.png"></div>
+  <div class="face"><img id="facea" src="/assets/01/face01.png"></div>
   <div class="baloon-area">
-    <div class="balloon-left"><div class ="line-text">お疲れさん！<br>今日がんばったこと、ウチに教えて！</div></div>
+    <div class="balloon-left"><div class ="line-text" id ="line-a">お疲れさん！<br>今日がんばったこと、ウチに教えて！</div></div>
   </div>
 </div>
 
@@ -77,7 +77,10 @@
     <div class="balloon-right">
      <div class="twiform">
         <%= form_tag(url_for(:action => 'ajax_create'), :remote => true) do %>
-          <%= text_field_tag :contents, "", maxlength:140, class:"form-control" %><br>
+          <%= text_field_tag :contents, "", maxlength:140, class:"form-control" %>          
+          <p class="input-rule">「○○をたくさん作った」<br>「□□を頑張った」といった<br>簡単な文章を入力してね</p>
+          <%= hidden_field_tag :char_no, "01" %>
+          <br>
           <%= submit_tag "報告してみる",  class:"btn btn-primary" %>
         <% end %>
       </div>
@@ -90,10 +93,10 @@
 
 <span class="hid">
   <div class="one_line">
-    <div class="face"><img src="/assets/01/face02.png"></div>
+    <div class="face"><img id="faceb" src="/assets/01/face02.png"></div>
     <div class="baloon-area">
       <div class="balloon-left"><div class="final_line line-text"></div></div>
-      <div class="balloon-left"><div class ="line-text">せっかくやしみんなにも見てもらお！</div>
+      <div class="balloon-left"><div class ="line-text" id ="line-b">せっかくやしみんなにも見てもらお！</div>
       <form method="get" action="/auth/twitter">
           <input type="hidden" name="line_id" class="line_id" value="" />
           <input type="submit" value="Tweet!" class="btn btn-primary"/>

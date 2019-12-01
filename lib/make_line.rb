@@ -19,6 +19,18 @@ class MakeLine
       @in_base_line_2_not_do = 'しかも@mfか…えらいわ。'
       
       @in_base_line_3 = '無理せんと、しっかり気分転換するんやで！'
+
+    elsif char_no == 2 then
+      # キャラクターNo.2の場合
+      @in_base_line0 = 'すごいですね。'
+
+      @in_base_line_1_do = '@m_sなんて、簡単にできるものではないです。'
+      @in_base_line_2_do = 'しかも@f…本当にすごいですね。'
+
+      @in_base_line_1_not_do = '@dなんて、よく頑張りましたね。'
+      @in_base_line_2_not_do = 'しかも@mf…えらいです。'
+      
+      @in_base_line_3 = '私も頑張らないと…。'
     end
 
     return make_line(natto_result)

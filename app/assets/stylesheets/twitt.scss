@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 body {
-  background-color: #007BFF !important;
+  background-color: #d9edf7 !important;
   background-image: url("/assets/01/back.png");
   background-size: auto 85%;
   background-position: right bottom;
@@ -69,6 +69,14 @@ a {
 .trans_slide-enter, .trans_slide-leave-to {
   height: 0;
 }
+
+.trans_slide_char-enter-active, .trans_slide_char-leave-active {
+  transition: all .5s;
+}
+.trans_slide_char-enter, .trans_slide_char-leave-to {
+  height: 0;
+}
+
 // vueのtransition end
 
 .info_close_button{
@@ -86,6 +94,7 @@ a {
   top: 50px;
   left: 0;
   width: 100%;
+  height: auto;
   background-color: #ffffff;  
   z-index: 100;
 }
@@ -168,4 +177,34 @@ a {
 
 footer{
   text-align: center;
+}
+
+
+.input-rule {
+  display: none;
+  width: auto;
+  position: absolute;
+  top: -100px;
+  left: 300px;
+  padding: 16px;
+  border-radius: 5px;
+  background: #ccc;
+  color: rgb(34, 34, 34);
+}
+.input-rule:after {
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 0;
+  bottom: -19px;
+  margin-left: 10px;
+  border: solid transparent;
+  border-color: rgba(51, 204, 153, 0);
+  border-top-color: #ccc;
+  border-width: 10px;
+  pointer-events: none;
+  content: " ";
+}
+.form-control:hover + .input-rule {
+  display: block;
 }
