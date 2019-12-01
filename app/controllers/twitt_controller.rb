@@ -65,7 +65,7 @@ class TwittController < ApplicationController
     end
 
     # 画像を加工
-    image = null
+    image = nil
     if char_no == 1 then
       image = Magick::ImageList.new("./app/assets/images/01/image.png")
     elsif char_no == 2 then
